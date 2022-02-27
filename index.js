@@ -1,4 +1,4 @@
-
+// This Games Uses Good Level of Maths
 // Enivorment Setup
 const canvas = document.createElement("canvas");
 document.querySelector(".myGame").appendChild(canvas);
@@ -236,28 +236,55 @@ const spawnEnemy = () => {
 }
 
 // Creating Animation Function
-
+let animationId;
 function animation() {
-      //Making Recursion
+    //Making Recursion
     context.clearRect(0, 0, canvas.width, canvas.height);
-   // Clearing canvas on Each Frame
-    requestAnimationFrame(animation)
+    // Clearing canvas on Each Frame
+    animationId = requestAnimationFrame(animation)
 
 
-     // Drawing Player
+    // Drawing Player
     mayank.draw();
 
     // Generating Bullets
-    Weapons.forEach((item) => {
+    Weapons.forEach((weapon, weaponIndex) => {
 
-        item.update();
+        weapon.update();
+
+        if (weapon.x + weapon.radius < 1 ||
+             weapon.y + weapon.radius < 1 ||
+              weapon.x - weapon.radius > canvas.width ||
+               weapon.y - weapon.radius > canvas.height) {
+            weapons.splice(weaponIndex, 1)
+        }
 
     })
-     // Generating enemies 
-    enemies.forEach((item) => {
-        item.update();
+
+
+
+    // Generating enemies 
+    enemies.forEach((enemy, enemyIndex) => {
+        enemy.update();
+        const distanceBetweenPlayerandEnemy = Math.hypot(abhi.x - enemy.x, abhi.y - enemy.y)
+        if (distanceBetweenPlayerandEnemy - abhi.radius - enemy.radius < 1) {
+            cancelAnimationFrame(cancelAnimationFrame)
+
+        }
 
     });
+
+    Weapons.forEach((weapon, weaponIndex) => {
+        const distanceBetweenWeaponandEnemy = Math.hypo(weapon.x - enemy.x, weapon.y - enemy.y)
+        if (distanceBetweenWeaponandEnemy - weapon.radius - enemy.radius < 1) {
+            setTimeout(() => {
+                enemies.splice(enemyIndex, 1);
+                weapons.splice(weaponIndex, 1)
+
+            }, 0);
+        }
+    })
+
 
 }
 
@@ -269,7 +296,7 @@ function animation() {
 canvas.addEventListener("click", (e) => {
     //finding angel between player position(center) and click co-ordinates
     const myAngel = Math.atan2(e.clientY - canvas.height / 2, e.clientX - canvas.width / 2)
-  // Making Const speed for light weapon
+    // Making Const speed for light weapon
     const velocity = {
         x: Math.cos(myAngel) * 6,
         y: Math.sin(myAngel) * 6,
