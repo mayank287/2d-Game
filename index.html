@@ -1,29 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width", initial-scale=1.0">
-    <title>Document</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2d-shooting-Game</title>
     <link rel="stylesheet" href="index.css" />
-</head>
-<body>
+    <link rel="icon" type="image/x-icon" href="./shooting.png">
+  </head>
 
-    <div class="scoreBoard">Score : 0
+  </script>
+  <body>
+    <div class="scoreBoard">Score : 0</div>
+    <form action="" method="get">
+      <select name="" id="difficulty">
+        <option value="Easy">Easy</option>
+        <option value="Medium">Medium</option>
+        <option value="Hard">Hard</option>
+        <option value="Insane">Insane</option>
+      </select>
 
-        <form action="" method="get">
-            <select name="" id="difficulty">
-                <option value="Easy" class="value">Easy</option>
-                <option value="Medium" class="value">Medium</option>
-                <option value="Hard" class="value">Hard</option>
-                <option value="Insane" class="value">Insane </option>
+      <input type="submit" value="Play" />
+    </form>
 
-                <input type="submit" value="Play" />
-            </select>
-        </form>
-    </div>
-    <div class="myGame"> </div>
-</body>
+    <div class="myGame"></div>
+  </body>
 
- <script src="./index.js"></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"
+    integrity="sha512-eP6ippJojIKXKO8EPLtsUMS+/sAGHGo1UN/38swqZa1ypfcD4I0V/ac5G3VzaHfDaklFmQLEs51lhkkVaqg60Q=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+
+  <script src="./index.js"></script>
 </html>
